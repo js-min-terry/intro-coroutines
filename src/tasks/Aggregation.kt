@@ -1,6 +1,8 @@
 package tasks
 
 import contributors.User
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 /*
 TODO: Write aggregation code.
@@ -14,7 +16,11 @@ TODO: Write aggregation code.
  The corresponding test can be found in test/tasks/AggregationKtTest.kt.
  You can use 'Navigate | Test' menu action (note the shortcut) to navigate to the test.
 */
+val log: Logger = LoggerFactory.getLogger("aggregate")
+
+
 fun List<User>.aggregate(): List<User> {
+    log.info("aggreate users: $this")
     return this.groupBy { it.login }
         .map { User(login = it.key, contributions = it.value.sumBy { user: User -> user.contributions }) }
         .sortedByDescending { it.contributions }
