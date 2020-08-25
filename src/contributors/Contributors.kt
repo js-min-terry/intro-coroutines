@@ -84,7 +84,7 @@ interface Contributors: CoroutineScope {
                     withContext(Dispatchers.Main) {
                         updateResults(users, startTime)
                     }
-                }.setUpCancellation()
+                }.setUpCancellation()   //
             }
             NOT_CANCELLABLE -> { // Performing requests in a non-cancellable way
                 launch {
@@ -151,6 +151,7 @@ interface Contributors: CoroutineScope {
         setLoadingStatus(text, status == IN_PROGRESS)
     }
 
+    //
     private fun Job.setUpCancellation() {
         // make active the 'cancel' button
         setActionsStatus(newLoadingEnabled = false, cancellationEnabled = true)
